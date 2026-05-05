@@ -26,3 +26,17 @@ yarn run deploy:alchemy --
   --deploy-key <DEPLOYMENT_KEY>
   --network <NETWORK_NAME>
 ```
+
+```
+npm run build
+
+npm run codegen
+
+goldsky subgraph delete sailfish-v3-opencampus-testnet/1.0.0
+
+goldsky subgraph deploy sailfish-v3-opencampus-testnet/1.0.3 --path .
+
+goldsky subgraph deploy sailfish-v3-occ-mainnet/1.0.3 --path .
+
+goldsky login
+```

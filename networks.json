@@ -76,5 +76,11 @@
       "address": "0x0227628f3F023bb0B980b67D528571c95c6DaC1c",
       "startBlock": 3518270
     }
+  },
+  "edu-chain": {
+    "Factory": {
+      "address": "0x963a7f4eb46967a9fd3dfbabd354fc294fa2bf5c",
+      "startBlock": 142495
+    }
   }
 }

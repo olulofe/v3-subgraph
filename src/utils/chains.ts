@@ -17,6 +17,8 @@ export enum ChainId {
   ZORA_MAINNET = 7777777,
   WORLDCHAIN_MAINNET = 480,
   SEPOLIA = 11155111,
+  OPENCAMPUS = 656476,
+  EDUCHAIN = 41923,
 }
 
 // subgraph does not support string enums, hence these constants
@@ -33,6 +35,8 @@ const ZKSYNC_ERA_NETWORK_NAME = 'zksync-era'
 const ZORA_MAINNET_NETWORK_NAME = 'zora-mainnet'
 const WORLDCHAIN_MAINNET_NETWORK_NAME = 'worldchain-mainnet'
 const SEPOLIA_NETWORK_NAME = 'sepolia'
+const OPENCAMPUS_NETWORK_NAME = 'open-campus-codex'
+const EDUCHAIN_NETWORK_NAME = 'edu-chain'
 
 // Note: All token and pool addresses should be lowercased!
 export class SubgraphConfig {
@@ -84,7 +88,7 @@ export function getSubgraphConfig(): SubgraphConfig {
   if (selectedNetwork == ARBITRUM_ONE_NETWORK_NAME) {
     return {
       factoryAddress: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
-      stablecoinWrappedNativePoolAddress: '0x17c14d2c404d167802b16c450d3c99f88f2c4f4d', // WETH-USDC 0.3% pool
+      stablecoinWrappedNativePoolAddress: '0x17c14d2c404d167802b16c450d3c99f88f2c4f4d', // WETH-USDC 0.3% pool 3000
       stablecoinIsToken0: false,
       wrappedNativeAddress: '0x82af49447d8a07e3bd95bd0d56f35241523fbab1', // WETH
       minimumNativeLocked: BigDecimal.fromString('20'),
@@ -201,7 +205,60 @@ export function getSubgraphConfig(): SubgraphConfig {
       poolsToSkip: [],
       poolMappings: [],
     }
-  } else if (selectedNetwork == CELO_NETWORK_NAME) {
+  } else if (selectedNetwork == EDUCHAIN_NETWORK_NAME) {
+    return {
+      factoryAddress: '0x963a7f4eb46967a9fd3dfbabd354fc294fa2bf5c',
+      stablecoinWrappedNativePoolAddress: '0x80680b0670a330a99509b68b1273f93864d4ecf4', // USDC-WEDU 0.3% pool
+      stablecoinIsToken0: true,
+      wrappedNativeAddress: '0xd02e8c38a8e3db71f8b2ae30b8186d7874934e12', // WEDU
+      minimumNativeLocked: BigDecimal.fromString('1'),
+      stablecoinAddresses: [
+        '0x836d275563bAb5E93Fd6Ca62a95dB7065Da94342', // USDC
+        '0x7277cc818e3f3ffbb169c6da9cc77fc2d2a34895', // USDT
+        '0x22fa593845fda46db5784f519b3364432a1d4203', // DAI
+        '0xd282de0c2bd41556c887f319a5c19ff441dcdf90', // ESD
+      ],
+      whitelistTokens: [
+        '0xd02e8c38a8e3db71f8b2ae30b8186d7874934e12', // WEDU
+        '0x7277cc818e3f3ffbb169c6da9cc77fc2d2a34895', // USDT
+        '0x836d275563bAb5E93Fd6Ca62a95dB7065Da94342', // USDC
+        '0x22fa593845fda46db5784f519b3364432a1d4203', // DAI
+        '0xa572bf655f61930b6f0d4546a67cd1376220081a', // wETH
+        '0xac0313f97398b585f23f8e50952f10d62350697c', // wBTC
+      ],
+      tokenOverrides: [],
+      poolsToSkip: [],
+      poolMappings: [],
+    }
+  }else if (selectedNetwork == OPENCAMPUS_NETWORK_NAME) {
+    return {
+      factoryAddress: '0xc40e0e137c5ef70eff0911a08266a691c9289c0d',
+      stablecoinWrappedNativePoolAddress: '0x209077a24097b9ea83762084ca7056f1913ca74a', // USDC-WEDU 0.3% pool
+      stablecoinIsToken0: true,
+      wrappedNativeAddress: '0x135e304139c5113895c97dce8b9eda56d4b53cf9', // WEDU
+      minimumNativeLocked: BigDecimal.fromString('1'),
+      stablecoinAddresses: [
+        '0x3bfb66999c22c0189b0d837d12d5a4004844ec12', // USDT
+        '0x19eeadcba1801afec43e87cefcd4239e13fc294d', // USDC
+        '0xa2086cb8a13bd446fbe15f80cdeea5f6e7a1a57f', // DAI
+      ],
+      whitelistTokens: [
+        '0x135e304139c5113895c97dce8b9eda56d4b53cf9', // WEDU
+        '0x3bfb66999c22c0189b0d837d12d5a4004844ec12', // USDT
+        '0x19eeadcba1801afec43e87cefcd4239e13fc294d', // USDC
+        '0xa2086cb8a13bd446fbe15f80cdeea5f6e7a1a57f', // DAI
+        '0xabdbca9b66f08b287e7b913970efedfe0c642693', // SAIL
+        '0x37ff2fe73459a607e17a3d3d08b8711a4f7991a4', // veSAIL
+        '0x3eb2eb8e2a0e26bef3dc3e78289be7343355febc', // GRASP
+        '0x5addde4f17d0a8406e02d9a2bf7a954aa0481f03', // wETH
+        '0x9f19598557d1282aa2245030433ea4717d5bd95c', // wBTC
+      ],
+      tokenOverrides: [],
+      poolsToSkip: [],
+      poolMappings: [],
+    }
+  }
+  else if (selectedNetwork == CELO_NETWORK_NAME) {
     return {
       factoryAddress: '0xAfE208a311B21f13EF87E33A90049fC17A7acDEc',
       stablecoinWrappedNativePoolAddress: '0x2d70cbabf4d8e61d5317b62cbe912935fd94e0fe', // CUSD-CELO 0.01% pool
